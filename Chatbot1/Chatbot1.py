@@ -16,6 +16,15 @@
 
 from textblob import TextBlob
 
+class UserProfile:
+    def __init__(self, name, age, preferences):
+        self.name = name
+        self.age = age
+        self.preferences = preferences
+
+    def __str__(self):
+        return f"Name: {self.name}, Age: {self.age}, Preferences: {self.preferences}"
+
 def process_input(user_input):
     # Use textblob to process the user's input
     processed_input = TextBlob(user_input)
@@ -29,10 +38,7 @@ def identify_intent(processed_input):
     else:
         return "statement"
 
-def generate_response(user_input, processed_input, intent):
-    # Strip leading and trailing whitespace from user input
-    user_input = user_input.strip()
-
+def generate_response(processed_input, intent):
     # Generate an appropriate response based on the user's input and identified intent
     if intent == "question":
         response = "I'm sorry, I'm just a simple chat bot and I can't answer questions."
@@ -45,13 +51,16 @@ def generate_response(user_input, processed_input, intent):
         elif sentiment.polarity < 0:
             response = f"That sounds negative. ({sentiment_value})"
         else:
-            response = f"That sounds neutral. ({sentiment_value})"   
+            response = f"That sounds neutral. ({sentiment_value})"
 
     return response
 
 def main():
     print("Welcome to the Simple Chat Bot!")
     print("You can type 'exit' in lowercase to continue the conversation or 'EXIT' in uppercase to exit the conversation.")
+
+    # Create a new user profile
+    user_profile = create_user_profile()
 
     while True:
         try:
@@ -88,15 +97,40 @@ def main():
                     file.write(f"Chat Bot: {response}\n\n")
                     continue
 
-            processed_input = process_input(user_input)
-            intent = identify_intent(processed_input)
-            response = generate_response(user_input, processed_input, intent)
+                processed_input = process_input(user_input)
+                intent = identify_intent(processed_input)
+                response = generate_response(processed_input, intent)
 
-            # Print the response
-            if response:
-                print("Chat Bot: ", response)
+                # Print the response
+                if response:
+                    print("Chat Bot: ", response)
+                    file.write(f"You: {user_input}\n")
+                    file.write(f"Chat Bot: {response}\n\n")
         except Exception as e:
             print("Chat Bot: An error occurred:", e)
+
+def create_user_profile():
+    name = input("Enter your name: ")
+    age = input("Enter your age: ")
+    preferences = {}
+
+    # Input preferences
+    while True:
+        preference = input("Enter a preference (or type 'done' to finish): ")
+        if preference.lower() == 'done':
+            break
+        value = input(f"Enter a value for '{preference}': ")
+        preferences[preference] = value
+
+    # Write user information to a file
+    with open(r"F:\AI School\MS Adv Prog\Chatbot1\user_profile.txt", "w") as file:
+        file.write(f"Name: {name}\n")
+        file.write(f"Age: {age}\n")
+        file.write("Preferences:\n")
+        for preference, value in preferences.items():
+            file.write(f"{preference}: {value}\n")
+
+    return UserProfile(name, age, preferences)
 
 if __name__ == "__main__":
     main()
