@@ -1,0 +1,13 @@
+Name: mike
+Age: 49
+Username: mikeb
+Email: mikb
+Student ID: asf
+Courses: adv prog
+
+Name: mike
+Age: 49
+Username: mikeb
+Email: mikb
+Guest Type: 1
+

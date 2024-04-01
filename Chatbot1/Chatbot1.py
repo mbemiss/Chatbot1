@@ -10,20 +10,43 @@
 #
 # Project 2
 # Estimated time: 4 hours
-# Sunday: 
+# Sunday: 3 hours
+# Monday
 
 
-
+# Importing necessary libraries
 from textblob import TextBlob
 
+# Dictionary to store user profiles
+user_profiles = {}
+
 class UserProfile:
-    def __init__(self, name, age, preferences):
+    def __init__(self, name, age, username, email):
         self.name = name
         self.age = age
-        self.preferences = preferences
+        self.username = username
+        self.email = email
 
     def __str__(self):
-        return f"Name: {self.name}, Age: {self.age}, Preferences: {self.preferences}"
+        return f"Name: {self.name}\nAge: {self.age}\nUsername: {self.username}\nEmail: {self.email}"
+
+class StudentProfile(UserProfile):
+    def __init__(self, name, age, username, email, student_id, courses):
+        super().__init__(name, age, username, email)
+        self.student_id = student_id
+        self.courses = courses
+
+    def __str__(self):
+        return super().__str__() + f"\nStudent ID: {self.student_id}\nCourses: {', '.join(self.courses)}"
+
+# Defining the GuestProfile class that inherits from UserProfile
+class GuestProfile(UserProfile):
+    def __init__(self, name, age, username, email, guest_type):
+        super().__init__(name, age, username, email)
+        self.guest_type = guest_type
+
+    def __str__(self):
+        return super().__str__() + f"\nGuest Type: {self.guest_type}"
 
 def process_input(user_input):
     # Use textblob to process the user's input
@@ -109,28 +132,66 @@ def main():
         except Exception as e:
             print("Chat Bot: An error occurred:", e)
 
+# Function to create a new user profile
 def create_user_profile():
     name = input("Enter your name: ")
     age = input("Enter your age: ")
-    preferences = {}
-
-    # Input preferences
-    while True:
-        preference = input("Enter a preference (or type 'done' to finish): ")
-        if preference.lower() == 'done':
-            break
-        value = input(f"Enter a value for '{preference}': ")
-        preferences[preference] = value
-
+    username = input("Enter username: ")
+    email = input("Enter email: ")
+    user_profile = UserProfile(name, age, username, email)
+    
     # Write user information to a file
     with open(r"F:\AI School\MS Adv Prog\Chatbot1\user_profile.txt", "w") as file:
         file.write(f"Name: {name}\n")
         file.write(f"Age: {age}\n")
-        file.write("Preferences:\n")
-        for preference, value in preferences.items():
-            file.write(f"{preference}: {value}\n")
+        file.write(f"Username: {username}\n")
+        file.write(f"Email: {email}\n")
+        
 
-    return UserProfile(name, age, preferences)
+    return UserProfile(name, age, username, email)
+
+# Function to create a new student profile
+def create_student_profile():
+    user_profile = create_user_profile()
+    student_id = input("Enter student ID: ")
+    num_courses = int(input("Enter number of courses: "))
+    courses = []
+    for _ in range(num_courses):
+        course = input("Enter course name: ")
+        courses.append(course)
+    student_profile = StudentProfile(user_profile.name, user_profile.age, user_profile.username, user_profile.email, student_id, courses)
+    return student_profile
+
+# Function to create a new guest profile
+def create_guest_profile():
+    user_profile = create_user_profile()
+    guest_type = input("Enter guest type: ")
+    guest_profile = GuestProfile(user_profile.name, user_profile.age, user_profile.username, user_profile.email, guest_type)
+    return guest_profile
+
+# Append user profile to file
+def append_to_file(profile, file_path):
+    with open(file_path, "a") as file:
+        file.write(str(profile) + "\n\n")
+
+# Append user profile to dictionary
+def append_to_dict(profile_dict, profile):
+    profile_dict[profile.username] = profile
+
+# Example usage
+student_profile = create_student_profile()
+append_to_file(student_profile, "user_profile.txt")
+append_to_dict(user_profiles, student_profile)
+
+guest_profile = create_guest_profile()
+append_to_file(guest_profile, "user_profile.txt")
+append_to_dict(user_profiles, guest_profile)
+
+# Print user profiles
+for username, profile in user_profiles.items():
+    print(f"Username: {username}")
+    print(profile)
+    print()
 
 if __name__ == "__main__":
     main()

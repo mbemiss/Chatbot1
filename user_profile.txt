@@ -1,3 +1,4 @@
-Name: Mike
+Name: mike
 Age: 49
-Preferences:
+Username: mikeb
+Email: mikb
