@@ -1,4 +1,0 @@
-Name: mike
-Age: 49
-Username: mikeb
-Email: mikb

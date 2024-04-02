@@ -9,12 +9,14 @@
 # were behaving the same.
 #
 # Project 2
-# Estimated time: 4 hours
+# Estimated time: 6 hours
 # Sunday: 3 hours
-# Monday
+# Monday: 2 hours
+# Tuesday: 3 hours
+# Total: 8 hours
+# Extra time eliminating errors and streamlining the code
 
 
-# Importing necessary libraries
 from textblob import TextBlob
 
 # Dictionary to store user profiles
@@ -30,6 +32,7 @@ class UserProfile:
     def __str__(self):
         return f"Name: {self.name}\nAge: {self.age}\nUsername: {self.username}\nEmail: {self.email}"
 
+# Defining the StudentProfile class that inherits from UserProfile
 class StudentProfile(UserProfile):
     def __init__(self, name, age, username, email, student_id, courses):
         super().__init__(name, age, username, email)
@@ -47,7 +50,7 @@ class GuestProfile(UserProfile):
 
     def __str__(self):
         return super().__str__() + f"\nGuest Type: {self.guest_type}"
-
+    
 def process_input(user_input):
     # Use textblob to process the user's input
     processed_input = TextBlob(user_input)
@@ -81,10 +84,22 @@ def generate_response(processed_input, intent):
 def main():
     print("Welcome to the Simple Chat Bot!")
     print("You can type 'exit' in lowercase to continue the conversation or 'EXIT' in uppercase to exit the conversation.")
+    print("Are you a student or a guest? Type 'student' or 'guest' to choose.")
+
+    # Select profile type
+    profile_type = input("You: ")
+    while profile_type.lower() not in ['student', 'guest']:
+        print("Chat Bot: Please enter 'student' or 'guest'.")
+        profile_type = input("You: ")
 
     # Create a new user profile
-    user_profile = create_user_profile()
+    if profile_type.lower() == 'student':
+        user_profile = create_student_profile()
+    else:
+        user_profile = create_guest_profile()
 
+    response = ""  # Initialize response variable
+    
     while True:
         try:
             with open(r"F:\AI School\MS Adv Prog\Chatbot1\conversation_log.txt", "a") as file:            
@@ -132,66 +147,45 @@ def main():
         except Exception as e:
             print("Chat Bot: An error occurred:", e)
 
-# Function to create a new user profile
-def create_user_profile():
-    name = input("Enter your name: ")
-    age = input("Enter your age: ")
-    username = input("Enter username: ")
-    email = input("Enter email: ")
-    user_profile = UserProfile(name, age, username, email)
-    
-    # Write user information to a file
-    with open(r"F:\AI School\MS Adv Prog\Chatbot1\user_profile.txt", "w") as file:
-        file.write(f"Name: {name}\n")
-        file.write(f"Age: {age}\n")
-        file.write(f"Username: {username}\n")
-        file.write(f"Email: {email}\n")
-        
-
-    return UserProfile(name, age, username, email)
 
 # Function to create a new student profile
 def create_student_profile():
-    user_profile = create_user_profile()
+    response = ""  # Initialize response variable
+    name = input("Enter your name: ")
+    while True:
+        age = input("Enter your age as digits: ")
+        if age.isdigit():
+            break
+        else:
+            print("Please enter a valid age (digits only).")
+    username = input("Enter username: ")
+    email = input("Enter email: ")
     student_id = input("Enter student ID: ")
     num_courses = int(input("Enter number of courses: "))
     courses = []
     for _ in range(num_courses):
         course = input("Enter course name: ")
         courses.append(course)
-    student_profile = StudentProfile(user_profile.name, user_profile.age, user_profile.username, user_profile.email, student_id, courses)
+    student_profile = StudentProfile(name, age, username, email, student_id, courses)
+    print("Great! Let's chat!\n")
     return student_profile
 
 # Function to create a new guest profile
 def create_guest_profile():
-    user_profile = create_user_profile()
+    response = ""  # Initialize response variable
+    name = input("Enter your name: ")
+    while True:
+        age = input("Enter your age as digits: ")
+        if age.isdigit():
+            break
+        else:
+            print("Please enter a valid age (digits only).")
+    username = input("Enter username: ")
+    email = input("Enter email: ")
     guest_type = input("Enter guest type: ")
-    guest_profile = GuestProfile(user_profile.name, user_profile.age, user_profile.username, user_profile.email, guest_type)
+    guest_profile = GuestProfile(name, age, username, email, guest_type)
+    print("Great! Let's chat!\n")
     return guest_profile
-
-# Append user profile to file
-def append_to_file(profile, file_path):
-    with open(file_path, "a") as file:
-        file.write(str(profile) + "\n\n")
-
-# Append user profile to dictionary
-def append_to_dict(profile_dict, profile):
-    profile_dict[profile.username] = profile
-
-# Example usage
-student_profile = create_student_profile()
-append_to_file(student_profile, "user_profile.txt")
-append_to_dict(user_profiles, student_profile)
-
-guest_profile = create_guest_profile()
-append_to_file(guest_profile, "user_profile.txt")
-append_to_dict(user_profiles, guest_profile)
-
-# Print user profiles
-for username, profile in user_profiles.items():
-    print(f"Username: {username}")
-    print(profile)
-    print()
 
 if __name__ == "__main__":
     main()
