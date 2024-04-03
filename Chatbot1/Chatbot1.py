@@ -31,6 +31,10 @@ class UserProfile:
 
     def __str__(self):
         return f"Name: {self.name}\nAge: {self.age}\nUsername: {self.username}\nEmail: {self.email}"
+    
+    def save_profile(self, file_path):
+        with open(file_path, "w") as file:
+            file.write(str(self) + "\n\n")
 
 # Defining the StudentProfile class that inherits from UserProfile
 class StudentProfile(UserProfile):
@@ -42,6 +46,10 @@ class StudentProfile(UserProfile):
     def __str__(self):
         return super().__str__() + f"\nStudent ID: {self.student_id}\nCourses: {', '.join(self.courses)}"
 
+    def save_profile(self, file_path):
+        with open(file_path, "w") as file:
+            file.write(str(self) + "\n\n")
+            
 # Defining the GuestProfile class that inherits from UserProfile
 class GuestProfile(UserProfile):
     def __init__(self, name, age, username, email, guest_type):
@@ -51,6 +59,10 @@ class GuestProfile(UserProfile):
     def __str__(self):
         return super().__str__() + f"\nGuest Type: {self.guest_type}"
     
+    def save_profile(self, file_path):
+        with open(file_path, "w") as file:
+            file.write(str(self) + "\n\n")
+            
 def process_input(user_input):
     # Use textblob to process the user's input
     processed_input = TextBlob(user_input)
@@ -94,10 +106,12 @@ def main():
 
     # Create a new user profile
     if profile_type.lower() == 'student':
-        user_profile = create_student_profile()
+        student_profile = create_student_profile()
+        student_profile.save_profile(r"F:\AI School\MS Adv Prog\Chatbot1\student_profile.txt")
     else:
-        user_profile = create_guest_profile()
-
+        guest_profile = create_guest_profile()
+        guest_profile.save_profile(r"F:\AI School\MS Adv Prog\Chatbot1\guest_profile.txt")
+    
     response = ""  # Initialize response variable
     
     while True:
