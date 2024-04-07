@@ -1,1 +1,7 @@
+Name: mike
+Age: 49
+Username: asdf
+Email: asdf
+Student ID: asdf
+Courses: asdf
 

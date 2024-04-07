@@ -1,0 +1,6 @@
+Name: mike
+Age: 30
+Username: mike
+Email: mike@asdf.com
+Guest Type: friend
+

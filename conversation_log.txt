@@ -1,0 +1,50 @@
+You: hello
+Chat Bot: That sounds neutral. (Polarity: 0.0, Subjectivity: 0.0)
+
+You: today was a great day
+Chat Bot: That sounds positive! (Polarity: 0.8, Subjectivity: 0.75)
+
+You: menu
+Chat Bot: That sounds positive! (Polarity: 0.8, Subjectivity: 0.75)
+
+You: MENU
+Chat Bot: That sounds positive! (Polarity: 0.8, Subjectivity: 0.75)
+
+Chat Bot: That sounds positive! (Polarity: 0.8, Subjectivity: 0.75)
+
+You: EXIT
+Chat Bot: That sounds positive! (Polarity: 0.8, Subjectivity: 0.75)
+
+You: EXIT
+Chat Bot: 
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said (detected language: fr): Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: That's fascinating!
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said (detected language: fr): Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: Tell me more!
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: I see.
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said: My name is Hugo and I am sixteen years old. Today, with my parents and my sister, we are going on a trip. My sister's name is Laura, she's thirteen years old. We are at the airport: heading to Barcelona in Spain!
+Chat Bot: Tell me more!
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said: My name is Hugo and I am sixteen years old. Today, with my parents and my sister, we are going on a trip. My sister's name is Laura, she's thirteen years old. We are at the airport: heading to Barcelona in Spain!
+Chat Bot: Hmm...
+
+You: hello
+Chat Bot: You said: hello
+Chat Bot: That's fascinating!
+
+You: what are you doing?
+Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
+
+You: EXIT
+Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
+

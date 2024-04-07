@@ -15,9 +15,17 @@
 # Tuesday: 3 hours
 # Total: 8 hours
 # Extra time eliminating errors and streamlining the code
+#
+# Project 3
+# Estimated time: 4 hours
+# Thursday: 1.5 hrs
 
 
 from textblob import TextBlob
+from translate import Translator
+from langdetect import detect
+import random
+
 
 # Dictionary to store user profiles
 user_profiles = {}
@@ -80,6 +88,17 @@ def generate_response(processed_input, intent):
     # Generate an appropriate response based on the user's input and identified intent
     if intent == "question":
         response = "I'm sorry, I'm just a simple chat bot and I can't answer questions."
+    
+    else:
+        # Translate the user's input
+        translated_input = translate_text(str(processed_input))
+        response = f"You said: {translated_input}\n"
+        # Get a random response
+        random_response = get_random_response()
+        response += f"Chat Bot: {random_response}"
+    
+    # Commenting out the sentiment analysis
+    """ 
     else:
         # Analyze the sentiment of the user's input
         sentiment = processed_input.sentiment
@@ -90,8 +109,27 @@ def generate_response(processed_input, intent):
             response = f"That sounds negative. ({sentiment_value})"
         else:
             response = f"That sounds neutral. ({sentiment_value})"
-
+    
+    """
+    # End of comment block
     return response
+
+def translate_text(text, dest_language='en'):
+    """Translates the given text from French to the specified destination language."""
+    translator = Translator(from_lang='fr', to_lang=dest_language)
+    translated_text = translator.translate(text)
+    return translated_text
+
+def get_random_response():
+    """Returns a random response from a predefined list."""
+    responses = [
+        "Interesting...",
+        "Tell me more!",
+        "I see.",
+        "That's fascinating!",
+        "Hmm..."
+    ]
+    return random.choice(responses)
 
 def main():
     print("Welcome to the Simple Chat Bot!")
