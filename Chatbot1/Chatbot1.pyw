@@ -19,37 +19,15 @@
 # Project 3
 # Estimated time: 4 hours
 # Thursday: 1.5 hrs
-# Sunday: 4 hours - 2 hours trying to get tkinter to work but dropped it for now
 
 
 from textblob import TextBlob
 from translate import Translator
 from langdetect import detect
 import random
-import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk import ne_chunk, pos_tag
+import tkinter as tk
+from tkinter import scrolledtext
 
-# Initialize NLTK
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('maxent_ne_chunker')
-nltk.download('words')
-
-# Function to tokenize sentences
-def tokenize_sentences(text):
-    return sent_tokenize(text)
-
-# Function to tokenize words
-def tokenize_words(sentence):
-    return word_tokenize(sentence)
-
-# Function to extract named entities
-def extract_entities(sentence):
-    words = word_tokenize(sentence)
-    tags = pos_tag(words)
-    entities = ne_chunk(tags)
-    return entities
 
 # Dictionary to store user profiles
 user_profiles = {}
@@ -99,22 +77,6 @@ def process_input(user_input):
     # Use textblob to process the user's input
     processed_input = TextBlob(user_input)
     return processed_input
-    
-    # Use NLTK to tokenize the user's input into sentences
-    sentences = tokenize_sentences(user_input)
-    
-    # Process each sentence
-    processed_sentences = []
-    for sentence in sentences:
-        # Tokenize the sentence into words
-        words = tokenize_words(sentence)
-        
-        # Extract named entities from the sentence
-        entities = extract_entities(sentence)
-        
-        processed_sentences.append((words, entities))
-    
-    return processed_sentences
 
 def identify_intent(processed_input):
     # Use textblob's capabilities to identify the user's intent
@@ -155,13 +117,13 @@ def generate_response(processed_input, intent):
     return response
 
 def translate_text(text, dest_language='en'):
-    # Translates the given text from French to the specified destination language
+    """Translates the given text from French to the specified destination language."""
     translator = Translator(from_lang='fr', to_lang=dest_language)
     translated_text = translator.translate(text)
     return translated_text
 
 def get_random_response():
-    # Returns a random response from a predefined list
+    """Returns a random response from a predefined list."""
     responses = [
         "Interesting...",
         "Tell me more!",
@@ -170,6 +132,17 @@ def get_random_response():
         "Hmm..."
     ]
     return random.choice(responses)
+
+def send_message():
+    user_input = entry.get()
+    # Process user input and generate response
+    processed_input = process_input(user_input)
+    intent = identify_intent(processed_input)
+    response = generate_response(processed_input, intent)
+    # Display response in chat area
+    chat_area.insert(tk.END, f"You: {user_input}\n")
+    chat_area.insert(tk.END, f"Chat Bot: {response}\n\n")
+    entry.delete(0, tk.END)  # Clear the input field
 
 def main():
     print("Welcome to the Simple Chat Bot!")
@@ -281,4 +254,7 @@ def create_guest_profile():
     return guest_profile
 
 if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window
     main()
+    root.mainloop()  # Run the tkinter event loop
