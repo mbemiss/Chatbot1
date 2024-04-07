@@ -48,3 +48,43 @@ Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
 You: EXIT
 Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
 
+You: hello
+Chat Bot: You said: hello
+Chat Bot: That's fascinating!
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said: My name is Hugo and I am sixteen years old. Today, with my parents and my sister, we are going on a trip. My sister's name is Laura, she's thirteen years old. We are at the airport: heading to Barcelona in Spain!
+Chat Bot: Hmm...
+
+You: hello
+Chat Bot: You said: hello
+Chat Bot: Tell me more!
+
+You: what is your name
+Chat Bot: You said: how do you feel?
+
+Chat Bot: Tell me more!
+
+You: what is your name?
+Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
+
+You: what is your name
+Chat Bot: You said: how do you feel?
+
+Chat Bot: Hmm...
+
+You: how do you feel?
+Chat Bot: I'm sorry, I'm just a simple chat bot and I can't answer questions.
+
+You: how do you feel
+Chat Bot: You said: How do you feel? 
+Chat Bot: That's fascinating!
+
+You: EXIT
+Chat Bot: You said: How do you feel? 
+Chat Bot: That's fascinating!
+
+You: Je m’appelle Hugo et j’ai seize ans. Aujourd’hui, avec mes parents et ma sœur nous partons en voyage. Ma sœur s’appelle Laura, elle a treize ans. Nous sommes à l’aéroport : direction Barcelone en Espagne !
+Chat Bot: You said: My name is Hugo and I am sixteen years old. Today, with my parents and my sister, we are going on a trip. My sister's name is Laura, she's thirteen years old. We are at the airport: heading to Barcelona in Spain!
+Chat Bot: I see.
+
